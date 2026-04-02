@@ -1,0 +1,29 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">DevOps Dashboard</h1>
+    <hr />
+    <div style="text-align: left; display: inline-block; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+        <p><strong>Container Status:</strong> Working</p>
+        <p><strong>ОS Docker:</strong> @Model.OS</p>
+        <p><strong>Machine name:</strong> @Model.MachineName</p>
+        <p><strong>Текущее время:</strong> <span id="clock">@Model.Time</span></p>
+    </div>
+    <br /><br />
+</div>
+
+@section Scripts {
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+            document.getElementById('clock').innerHTML = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+}
